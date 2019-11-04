@@ -5,3 +5,8 @@ sudo apt-get install tmux
 # Fuzzy finder
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+
+# PlotJuggler
+
+# VS Code
+sudo snap install code --classic
