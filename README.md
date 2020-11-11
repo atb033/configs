@@ -1,4 +1,10 @@
 # configs
 Personal configuration files
 
-> Save the config files in your home repo
+Create symbolic links to these configurations to the home repo
+
+For instance
+
+```shell
+ln -s .gitignore $HOME/.gitignore
+```
