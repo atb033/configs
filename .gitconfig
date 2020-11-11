@@ -1,7 +1,5 @@
 [user]
-	name = atb033
 	email = ashwinbose123@gmail.com
-[push]
-	default = matching
+	name = Ashwin Bose
 [alias]
-	plog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+	plog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
