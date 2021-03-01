@@ -1,6 +1,7 @@
 #!/bin/bash
 
 toadi-remote-cleanup () {
+    # Copies over the sdk-version of SLAM to remote toadi
     ROBOT_ID=$1
     toadi=root@10.50.0.$ROBOT_ID
     if [ -z $ROBOT_ID ]; then
@@ -11,7 +12,8 @@ toadi-remote-cleanup () {
     fi
 }
 
-get_toadi_sdk () {
+toadi-get-sdk () {
+    # a brute force way to checkout the desired commit hash of the toadi-sdk
     COMMIT_HASH=$1
     if [ -z $COMMIT_HASH ]; then
         echo "Please enter the commit hash"
