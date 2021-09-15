@@ -39,3 +39,26 @@ toadi-find-string-in-files () {
         find . -name "*$FILE_NAME_STRING*" -exec grep -l $SEARCH_STRING {} +
     fi
 }
+
+qt () {
+    open -a $HOME/Qt/Qt\ Creator.app
+}
+
+toadi-copy-recording-files-from-remote () {
+    # Copies over the sdk-version of SLAM to remote toadi
+    PORT=$1
+
+    filenames=(
+        "application.config"
+        "dockingInfo.json"
+        "front_cameracalibration_intrinics.xml"
+        "motorController.json"
+        "mowingInfo.json"
+        "multizone.json"
+        "navigationMode.json"
+    )
+
+    for filename in $filenames; do
+        scp -r -P $PORT root@10.55.0.146:/home/toadi/data/$filename .
+    done
+}
