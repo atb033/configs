@@ -13,6 +13,19 @@ toadi-remote-cleanup () {
     fi
 }
 
+toadi-remote-cleanup-with-port () {
+    # Copies over the sdk-version of SLAM to remote toadi
+    PORT=$1
+    toadi=root@10.55.0.146
+    if [ -z $PORT ]; then
+        echo "Please enter the port number"
+    else
+	ssh $toadi -p $PORT mkdir -p /home/toadi/data/toadi/lib \
+        && scp -r -P $PORT ~/toadi-main/sdk/jetson/linux/lib/libSlamCore.so $toadi:/home/toadi/data/toadi/lib \
+        && scp -r -P $PORT ~/toolchain/tc-jetson-nano/aarch64-poky-linux/usr/lib/libboost_system.so* $toadi:/home/toadi/data/toadi/lib
+    fi
+}
+
 toadi-get-sdk () {
     # a brute force way to checkout the desired commit hash of the toadi-sdk
     COMMIT_HASH=$1
