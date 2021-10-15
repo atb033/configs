@@ -74,3 +74,16 @@ toadi-copy-recording-files-from-remote () {
         scp -r -P $PORT root@10.55.0.146:/home/toadi/data/$filename .
     done
 }
+
+find-the-frigging-toadi () {
+    mkdir -p ~/Downloads/toadi-images;
+
+    echo "IP scanning"
+
+    nmap -snP 10.50.0.0/24 |  awk '/(10.50.0.[0-9][0-9])/{print $5}' > ~/Downloads/toadi-images/ips.txt;
+
+    while read p; do
+        echo "downloading http://$p:8080/image/front/img.jpg"
+        curl -o "$p.jpg" "http://$p:8080/image/front/img.jpg"
+    done <~/Downloads/toadi-images/ips.txt
+}
