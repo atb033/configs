@@ -1,15 +1,14 @@
 #!/bin/bash
 
-toadi-remote-cleanup () {
+toadi-copy-slam () {
     # Copies over the sdk-version of SLAM to remote toadi
-    ROBOT_ID=$1
-    toadi=root@10.50.0.$ROBOT_ID
-    if [ -z $ROBOT_ID ]; then
-        echo "Please enter the robot id"
+    ROBOT_ALIAS=$1
+    toadi=$ROBOT_ALIAS
+    if [ -z $ROBOT_ALIAS ]; then
+        echo "Please enter the robot alias"
     else
 	ssh $toadi mkdir -p /home/toadi/data/toadi/lib \
-        && scp ~/toadi-main/sdk/jetson/linux/lib/libSlamCore.so $toadi:/home/toadi/data/toadi/lib \
-        && scp ~/toolchain/tc-jetson-nano/aarch64-poky-linux/usr/lib/libboost_system.so* $toadi:/home/toadi/data/toadi/lib
+        && scp ~/toadi-main/sdk/jetson/linux/lib/libSlamCore.so $toadi:/home/toadi/data/toadi/lib
     fi
 }
 
@@ -58,7 +57,7 @@ qt () {
 }
 
 toadi-copy-recording-files-from-remote () {
-    # Copies over the sdk-version of SLAM to remote toadi
+    # Copies over whole bunch of stuff for the simulator
     PORT=$1
 
     filenames=(
