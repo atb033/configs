@@ -82,6 +82,8 @@ find-the-frigging-toadi () {
 
     nmap -snP 10.50.0.0/24 |  awk '/(10.50.0.[0-9][0-9])/{print $5}' > ~/Downloads/toadi-images/ips.txt;
 
+    echo "Scanning completed and IPs saved to ~/Downloads/toadi-images/ips.txt"
+
     while read p; do
         echo "downloading http://$p:8080/image/front/img.jpg"
         curl -o "$p.jpg" "http://$p:8080/image/front/img.jpg"
