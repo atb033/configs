@@ -56,25 +56,6 @@ qt () {
     open -a $HOME/Qt/Qt\ Creator.app
 }
 
-toadi-copy-recording-files-from-remote () {
-    # Copies over whole bunch of stuff for the simulator
-    PORT=$1
-
-    filenames=(
-        "application.config"
-        "dockingInfo.json"
-        "front_cameracalibration_intrinics.xml"
-        "motorController.json"
-        "mowingInfo.json"
-        "multizone.json"
-        "navigationMode.json"
-    )
-
-    for filename in $filenames; do
-        scp -r -P $PORT root@10.55.0.146:/home/toadi/data/$filename .
-    done
-}
-
 find-the-frigging-toadi () {
     mkdir -p ~/Downloads/toadi-images;
 
@@ -86,6 +67,26 @@ find-the-frigging-toadi () {
 
     while read p; do
         echo "downloading http://$p:8080/image/front/img.jpg"
+        cd ~/Downloads/toadi-images/
         curl -o "$p.jpg" "http://$p:8080/image/front/img.jpg"
+        cd -
     done <~/Downloads/toadi-images/ips.txt
+}
+
+toadi-copy-simulator-stuff() {
+    # Copies over the sdk-version of SLAM to remote toadi
+    ROBOT_ALIAS=$1
+    toadi=$ROBOT_ALIAS
+    if [ -z $ROBOT_ALIAS ]; then
+        echo "Please enter the robot alias"
+    else
+        echo "copying from port $toadi"
+
+        for filename in $filenames; do
+            scp -r $toadi:/home/toadi/data/*json* .
+            scp -r $toadi:/home/toadi/data/*config* .
+            scp -r $toadi:/home/toadi/data/maps .
+            scp -r $toadi:/home/toadi/data/tunnelport .
+        done
+    fi
 }
