@@ -38,3 +38,12 @@ and add keybindings and fuzzy completions
 ```shell
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
+
+### [pip](https://pip.pypa.io/en/stable/)
+
+Upgrade pip as the default version shows some error. See [this](https://exerror.com/importerror-cannot-import-name-packagefinder/)
+
+```shell
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+```
