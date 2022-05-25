@@ -38,3 +38,17 @@ and add keybindings and fuzzy completions
 ```shell
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
+
+### [NodeJS](https://github.com/nvm-sh/nvm)
+
+Install `nvm`
+
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+```
+
+Install `npm`
+
+```shell
+nvm install node
+```
